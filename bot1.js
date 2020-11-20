@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 
@@ -583,7 +583,7 @@ function gpcSlots(pogcoinsAmt, arguments, receivedMessage) {
 	}
 
 	database.update({ discordID: receivedMessage.author.id }, { $set: { gambledRecently: true } }, { multi: false }, function (err, data) { console.log("setting gambledRecently for " + receivedMessage.author.id + " to true") })
-	
+
 	//add to mega pog million pot
 	changePogCoin("pogthief", Math.round(rollAmount * .3))
 
@@ -628,6 +628,14 @@ function megapogmillion(arguments, receivedMessage) {
 		database.findOne({ discordID: "pogthief" }, (err, data) => {
 			receivedMessage.channel.send("The current Mega Pog Million Jackpot is " + data.pogcoins + " pogcoins!");
 		})
+	}else if (command == "5"){
+		for(i = 0; i < 5; i++){
+			megapogmillion([arguments[0]], receivedMessage);
+		}
+	}else if (command == "10"){
+		for(i = 0; i < 10; i++){
+			megapogmillion([arguments[0]], receivedMessage);
+		}
 	}
 	else if (command == null) {
 		console.log("megapogmillion roll")
